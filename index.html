@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><title>유전학 용어 암기</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f6f7f9;--fg:#1c1e21;--card:#fff;--ac:#2f6fed;--ok:#1b8a4b;--no:#c93636;--bd:#d9dce1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e8eaed;--card:#222529;--ac:#6b9bff;--ok:#4cc380;--no:#ff7b7b;--bd:#3a3e44}}
+:root[data-theme="dark"]{--bg:#15171a;--fg:#e8eaed;--card:#222529;--ac:#6b9bff;--ok:#4cc380;--no:#ff7b7b;--bd:#3a3e44}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,"Noto Sans KR",sans-serif}
+#app{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:8px 0 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:12px}
+button{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px;width:100%;text-align:left;margin-bottom:8px;cursor:pointer}
+button.p{background:var(--ac);color:#fff;border-color:var(--ac);text-align:center}
+textarea,input{font:inherit;width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--fg)}
+.bar{display:flex;justify-content:space-between;align-items:center;font-size:14px;opacity:.8;margin-bottom:8px}
+.ok{color:var(--ok);font-weight:700}.no{color:var(--no);font-weight:700}
+.ans{background:var(--bg);border-radius:8px;padding:8px;margin:8px 0;font-size:15px}
+.b{display:inline-block;margin:2px;width:90px}.b input{padding:4px 6px}
+</style></head><body><div id="app"></div>
+<script>
+const D=[
+["대립유전자","상동염색체의 특정한 같은 위치에 존재하며, 하나의 유전 형질을 결정하는 서로 다른 유전자이다. 상동염색체 위에 쌍으로 존재하는 대립유전자는 같을 수도 있고 다를 수도 있다."],
+["상동염색체","체세포에 쌍으로 존재하는 크기와 모양이 같은 두 염색체로, 하나는 부계(아버지)로부터, 다른 하나는 모계(어머니)로부터 물려받은 것이다. 특정한 같은 위치에 대립유전자가 존재한다."],
+["형질","생물이 나타내는 모양이나 성질을 말한다."],
+["대립형질","한 가지 형질에 대해 명확하게 구별되어 대비되는 모양이나 성질을 말한다."],
+["유전자형","개체가 가지고 있는 대립유전자의 조합을 알파벳 기호로 나타낸 것이다."],
+["표현형","개체가 가진 유전자 구성에 의해 생물 겉으로 직접 드러나 나타나는 모양이나 성질을 말한다."],
+["우성 형질","대립유전자가 서로 다른 이형접합(Aa) 상태일 때, 자손에서 겉으로 표현되어 나타나는 대립형질을 의미한다."],
+["열성 형질","대립유전자가 서로 다른 이형접합(Aa) 상태일 때, 자손에서 표현되지 않고 우성 유전자에 의해 가려지는 대립형질을 의미한다."],
+["분리의 법칙","쌍으로 존재하는 대립유전자(유전인자)가 감수 분열을 통해 생식세포가 형성될 때, 각각 서로 다른 생식세포로 하나씩 나뉘어 들어가는 유전 원리이다."],
+["독립의 법칙","두 쌍 이상의 대립형질이 동시에 유전될 때, 각각의 형질을 결정하는 유전자는 서로 영향을 주지 않고 독립적으로 분리되어 생식세포로 들어가는 법칙이다."],
+["단일유전자유전","한 쌍의 대립유전자에 의해 형질이 결정되는 유전 현상이다. 멘델이 발견한 유전의 기본 원리를 따르며 대립형질이 명확하게 구분된다."],
+["다유전자유전","여러 쌍의 대립유전자에 의해 하나의 형질이 결정되는 유전 현상이다. 대립형질이 뚜렷하게 구분되지 않고 표현형이 연속적으로 나타나며, 환경의 영향을 많이 받는다."],
+["상염색체 유전","형질을 결정하는 유전자가 암수 공통으로 가지고 있는 상염색체에 존재하여, 성별에 따른 유전적 구분 없이 동일한 빈도로 나타나는 유전 현상이다."],
+["성염색체 유전","형질을 결정하는 유전자가 성염색체(X 또는 Y)에 존재하여 성별에 따라 형질이 나타나는 빈도가 다르게 나타나는 유전 현상이다."],
+["복대립유전","한 가지 유전 형질을 결정하는 데 세 개 이상의 대립유전자가 관여하는 유전 현상이다."],
+["유전체","한 생명체가 살아가는 데 필요한 유전 정보의 전체 또는 한 세포가 가진 DNA 전체(유전자의 총합)를 의미한다."],
+["뉴클레오타이드","DNA와 RNA 같은 핵산을 구성하는 기본 단위로, 인산, 당(디옥시라이보스 또는 라이보스), 염기가 1:1:1의 비율로 결합한 화합물이다."],
+["뉴클레오솜","진핵세포에서 DNA 가닥이 히스톤 단백질을 감싸고 있는 기본 구조 단위로, 고도로 응축되어 염색질 및 염색체를 형성한다."],
+["상보결합","DNA의 이중나선 구조 안에서 아데닌(A)은 항상 타이민(T)과 2개의 수소결합으로, 구아닌(G)은 항상 사이토신(C)과 3개의 수소결합으로 서로 마주 보며 특이적으로 결합하는 원리이다."],
+["돌연변이","DNA의 염기서열이나 염색체 수, 구조 등에 영구적인 변화가 생겨 부모에게 없던 새로운 형질이 나타나는 유전적 현상이다. 생식세포 형성 과정에서 일어날 경우 자손에게 유전될 수 있다."],
+["유전자돌연변이","유전자를 구성하는 DNA 염기서열 자체에 변화가 생겨서 일어나는 돌연변이이다. 염색체 수나 구조의 이상은 현미경으로 관찰할 수 없으나, 특정 기능성 단백질 결핍을 유발한다."],
+["염색체돌연변이","염색체의 수(감수분열 시 염색체 비분리)나 구조(결실, 중복, 역위, 전좌)에 이상이 생겨 일어나는 돌연변이이다. 정상 세포에 비해 큰 유전적 변이가 생기며, 염색체 사진 분석(핵형 분석)을 통해 관찰 가능하다."]
+];
+const A=document.getElementById('app');
+const sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const ns=s=>s.replace(/\s+/g,'');
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const MODES=["설명 보고 단어 입력","단어 보고 설명 고르기 (5지선다)","빈칸 채우기","단어 보고 설명 전부 입력"];
+let m,q,i,score,wrong;
+function home(){
+ A.innerHTML='<h1>🧬 유전학 용어 암기 (22개)</h1>'+MODES.map((t,k)=>`<button onclick="start(${k})"><b>${k+1}번</b> ${t}</button>`).join('')+'<p style="font-size:14px;opacity:.7">띄어쓰기는 무시하고, 그 외에는 한 글자도 틀리면 오답입니다.</p>';
+}
+function start(k){m=k;q=sh(D);i=0;score=0;wrong=[];show()}
+function show(){
+ if(i>=q.length){
+  A.innerHTML=`<h1>결과</h1><div class="card"><b>${score} / ${q.length}</b> 정답</div>`+(wrong.length?`<div class="card">틀린 단어: ${wrong.join(', ')}</div>`:'')+`<button class="p" onclick="start(${m})">다시 하기</button><button class="p" onclick="home()">처음으로</button>`;return}
+ const [t,d]=q[i];
+ let h=`<div class="bar"><button onclick="home()" style="width:auto;margin:0;padding:6px 12px">← 처음으로</button><span>${i+1} / ${q.length}</span></div><div style="font-size:14px;opacity:.8;margin-bottom:8px">${MODES[m]}</div><div class="card">`;
+ if(m==0)h+=`<p>${esc(d)}</p><input id="in" placeholder="단어 입력" autocomplete="off">`;
+ if(m==1){const o=sh([q[i],...sh(D.filter(x=>x!==q[i])).slice(0,4)]);window.O=o;h+=`<p><b>${t}</b></p>`+o.map((x,k)=>`<button onclick="pick(${k})">${k+1}. ${esc(x[1])}</button>`).join('')}
+ if(m==2){const w=d.split(' ');const c=w.map((x,k)=>k).filter(k=>w[k].replace(/[^가-힣A-Za-z0-9]/g,'').length>=2);const n=Math.max(2,Math.round(w.length*.2));const bl=new Set(sh(c).slice(0,n));window.BL=[...bl].sort((a,b)=>a-b);window.W=w;
+  h+=`<p><b>${t}</b></p><p>`+w.map((x,k)=>bl.has(k)?`<span class="b"><input class="bi" autocomplete="off"></span>`:esc(x)).join(' ')+'</p>'}
+ if(m==3)h+=`<p><b>${t}</b></p><textarea id="in" rows="6" placeholder="설명 전체 입력"></textarea>`;
+ h+='</div>';
+ if(m!=1)h+='<button class="p" id="sub" onclick="check()">확인</button>';
+ A.innerHTML=h+'<div id="fb"></div>';
+ const f=document.getElementById('in')||document.querySelector('.bi');if(f)f.focus();
+}
+function fin(ok,corr){
+ if(ok)score++;else wrong.push(q[i][0]);
+ let h=(ok?'<div class="ok">⭕ 정답!</div>':'<div class="no">❌ 오답</div>')+`<div class="ans"><b>정답:</b> ${esc(corr)}</div>`;
+ document.getElementById('fb').innerHTML=`<div class="card">${h}</div><button class="p" onclick="i++;show()">다음</button>`;
+ document.querySelectorAll('input,textarea').forEach(e=>e.disabled=true);
+ const s=document.getElementById('sub');if(s)s.remove();
+ document.querySelectorAll('#app .card button').forEach(b=>b.disabled=true);
+}
+function pick(k){const ok=window.O[k]===q[i];fin(ok,q[i][1])}
+function check(){
+ const [t,d]=q[i];
+ if(m==0){const v=document.getElementById('in').value;fin(ns(v)===ns(t),t)}
+ if(m==3){const v=document.getElementById('in').value;fin(ns(v)===ns(d),d)}
+ if(m==2){const ins=[...document.querySelectorAll('.bi')];let ok=true;
+  ins.forEach((e,k)=>{if(ns(e.value)!==ns(window.W[window.BL[k]]))ok=false});
+  fin(ok,window.BL.map(k=>window.W[k]).join(' / ')+'\n\n전체: '+d)}
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&e.target.tagName!=='TEXTAREA'){const s=document.getElementById('sub');if(s){s.click()}else{const n=document.querySelector('#fb .p');if(n)n.click()}}});
+home();
+</script></body></html>
